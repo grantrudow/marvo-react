@@ -1,0 +1,66 @@
+.Link {
+    text-decoration: none;
+    color: #000000;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 80px;
+}
+
+.header__logo {
+    grid-column: 1/4;
+    display: flex;
+    padding: 10px 10px 10px 50px;
+    align-items: center;
+}
+
+.header__logo > h2 {
+    text-transform: uppercase;
+    color: #000000;
+    font-family: 'Poppins';
+    font-weight: 300;
+}
+
+.header__siteNav {
+    grid-column: 3/11;
+    display: flex;
+    color: #000000;
+    justify-content: space-evenly;
+}
+
+.navLink {
+    text-decoration: none;
+}
+
+.navLink > h5 {
+    text-decoration: none;
+    color: #000000;
+    font-family: 'Poppins';
+    font-weight: 300;
+    margin: 0 25px;
+   
+}
+
+.header__options {
+    grid-column: 11/13;
+    justify-items: center;
+}
+
+.header__account {
+    padding: 0 20px;
+}
+
+.header__cart {
+    padding: 0 20px;
+}
+
+.header__search {
+    padding: 0 20px;
+}
+
