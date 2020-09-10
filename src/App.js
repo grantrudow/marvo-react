@@ -4,6 +4,7 @@ import './App.css';
 import Header from './Header';
 import Hero from './Hero';
 import SubMenu from './SubMenu';
+import Collections from './Collections';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
             <Header />
             <Hero />
             <SubMenu />
+            <Collections />
           </Route>
         </Switch>
       </div>

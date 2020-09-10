@@ -1,0 +1,15 @@
+.collectionCard {
+	grid-column: span 4;
+	padding-top: 35px;
+}
+
+.collectionCard__image {
+	width: 95%;
+	height: 300px;
+	object-fit: cover;
+	border-radius: 25px;
+}
+
+.collectionCard__title {
+	margin-top: -200px;
+}
