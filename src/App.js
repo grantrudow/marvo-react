@@ -2,7 +2,8 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Header from './Header';
-import Hero from './Hero'
+import Hero from './Hero';
+import SubMenu from './SubMenu';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/">
             <Header />
             <Hero />
+            <SubMenu />
           </Route>
         </Switch>
       </div>
