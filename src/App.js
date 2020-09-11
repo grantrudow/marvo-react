@@ -7,12 +7,16 @@ import SubMenu from './SubMenu';
 import Collections from './Collections';
 import Products from './Products';
 import Footer from './Footer';
+import Login from './Login';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Switch>
+          <Route path='/login'>
+            <Login />
+          </Route>
           <Route path="/">
             <Header />
             <Hero />
@@ -21,6 +25,7 @@ function App() {
             <Products />
             <Footer />
           </Route>
+
         </Switch>
       </div>
     </Router>

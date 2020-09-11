@@ -31,7 +31,7 @@ function Header() {
             </div>
 
             <div className="header__options">
-                <Link className="Link">
+                <Link className="Link" to='/login'>
                     <AccountCircleIcon className= "header__icon" />
                 </Link>
                 <Link className="Link">
