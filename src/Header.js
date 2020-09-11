@@ -1,12 +1,15 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
+import { useStateValue } from './StateProvider';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
 
-
 function Header() {
+    const [{ user }] = useStateValue();
+
+
     return (
         <div className="header">
             <Link className="Link" to='/'>
@@ -31,13 +34,13 @@ function Header() {
             </div>
 
             <div className="header__options">
-                <Link className="Link" to='/login'>
+                <Link to='/login'>
                     <AccountCircleIcon className= "header__icon" />
                 </Link>
-                <Link className="Link">
+                <Link>
                     <ShoppingCartIcon className= "header__icon" />
                 </Link>
-                <Link className="Link">
+                <Link>
                     <SearchIcon className= "header__icon" />
                 </Link>
             </div>
