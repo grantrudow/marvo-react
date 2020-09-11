@@ -1,5 +1,4 @@
 import React from 'react';
-import logoIcon from './resources/logo-icon.png';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
@@ -33,13 +32,13 @@ function Header() {
 
             <div className="header__options">
                 <Link className="Link">
-                    <AccountCircleIcon className= "header__account" />
+                    <AccountCircleIcon className= "header__icon" />
                 </Link>
                 <Link className="Link">
-                    <ShoppingCartIcon className= "header__cart" />
+                    <ShoppingCartIcon className= "header__icon" />
                 </Link>
                 <Link className="Link">
-                    <SearchIcon className= "header__search" />
+                    <SearchIcon className= "header__icon" />
                 </Link>
             </div>
         </div>

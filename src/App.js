@@ -5,6 +5,8 @@ import Header from './Header';
 import Hero from './Hero';
 import SubMenu from './SubMenu';
 import Collections from './Collections';
+import Products from './Products';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
             <Hero />
             <SubMenu />
             <Collections />
+            <Products />
+            <Footer />
           </Route>
         </Switch>
       </div>

@@ -1,0 +1,5 @@
+.products {
+    grid-column: 2/8;
+    margin-top: 150px;
+    align-items: center;
+}
