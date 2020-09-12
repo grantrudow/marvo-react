@@ -1,0 +1,13 @@
+.items > h1 {
+    font-weight: 300;
+}
+
+.items__addNew > button {
+    width: 150px;
+    height: 40px;
+    background: black;
+    color: white;
+    border: none;
+    font-size: 1em;
+}
+

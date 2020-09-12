@@ -13,36 +13,31 @@ import Dashboard from './Dashboard';
 import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
 
-
 function App() {
-  const [{user}, dispatch] = useStateValue();
-  const loggedIn = false;
+  const [{user, isLoggedIn}, dispatch] = useStateValue();
 
   useEffect(() => {
-    // will only run once when the app component loads...
-
-    auth.onAuthStateChanged(authUser => {
-      console.log('THE USER IS >>', authUser);
-
-      if (authUser) {
-        loggedIn = true;
-        // The user just logged in/was logged in
+    auth.onAuthStateChanged(function(user) {
+      if (user) {
+        // User is signed in.
         dispatch({
           type: 'SET_USER',
-          user: authUser
+          user: user,
+          isLoggedIn: true
+          
         })
       } else {
-        // The user is logged out
+        // No user is signed in.
+        let loggedIn = false;
         dispatch({
           type: 'SET_USER',
-          user: null
+          user: null,
+          isLoggedIn: false
         })
       }
-    })
+    });
   }, [])
-
-  console.log('User is logged in??', loggedIn)
-
+  
   return (
     <Router>
       <div className="App">
@@ -51,7 +46,7 @@ function App() {
             <Register />
           </Route>
           <Route exact path='/login'>
-            {loggedIn ? <Redirect to='/dashboard' /> : <Login />}
+            {isLoggedIn ? <Redirect to='/dashboard' /> : <Login />}
           </Route>
           <Route path='/dashboard'>
             <Header />

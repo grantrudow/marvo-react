@@ -1,0 +1,17 @@
+.dashboard__title {
+    grid-column: 2/8;
+}
+
+.dashboard__title > h1 {
+    font-weight: 300;
+}
+
+.dashboard__left {
+    grid-column: 1/2;
+    padding-left: 50px;
+}
+
+.dashboard__main {
+    grid-column: 2/8;
+}
+
