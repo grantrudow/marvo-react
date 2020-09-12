@@ -17,19 +17,9 @@ function Register() {
 		if (password === passwordConfirm) {
 			auth.createUserWithEmailAndPassword(email, password)
 			.then((auth) => {
-				db.collection('users').add({
-					firstName: firstName,
-					lastName: lastName,
-					email: email,
-				})
-				.then(function(docRef) {
-					console.log('Document written with ID: ', docRef)
-					history.push('/')
-				})
-				.catch(function(error) {
-					console.error('Error adding document: ', error)
-				})
+				history.push('/')
 			})
+			.catch(error => { alert(error.message) })
 		} else {
 			alert('Passwords do not match')
 		}

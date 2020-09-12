@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import './App.css';
 import Header from './Header';
 import Hero from './Hero';
@@ -18,12 +18,13 @@ function App() {
   const [{user, isLoggedIn}, dispatch] = useStateValue();
 
   useEffect(() => {
-    auth.onAuthStateChanged(function(user) {
-      if (user) {
+    auth.onAuthStateChanged(authUser => {
+      console.log('THE USER IS >>>', authUser)
+      if (authUser) {
         // User is signed in.
         dispatch({
           type: 'SET_USER',
-          user: user,
+          user: authUser,
           isLoggedIn: true
           
         })
@@ -57,7 +58,7 @@ function App() {
             <Header />
             <Dashboard />
           </Route>
-          <Route path="/">
+          <Route exact path="/">
             <Header />
             <Hero />
             <SubMenu />

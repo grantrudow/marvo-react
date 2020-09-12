@@ -2,7 +2,13 @@
     font-weight: 300;
 }
 
-.items__addNew > button {
+.items__addNew {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.items__addNew > a > button {
     width: 150px;
     height: 40px;
     background: black;

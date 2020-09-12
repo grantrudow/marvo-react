@@ -2,6 +2,9 @@ import React from 'react';
 import './Sidebar.css';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
+import { useStateValue } from './StateProvider';
+import { auth } from './firebase';
+
 import ListSubheader from '@material-ui/core/ListSubheader';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -29,12 +32,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Sidebar() {
+    const [{ user }] = useStateValue();
     const classes = useStyles();
     const [open, setOpen] = React.useState(true);
   
     const handleClick = () => {
       setOpen(!open);
     };
+
+    const handleSignOut = () => {
+      if (user) {
+        auth.signOut();
+      }
+    }
   
     return (
       <List
@@ -87,7 +97,7 @@ function Sidebar() {
           <ListItemIcon>
             <PersonOutlineIcon />
           </ListItemIcon>
-          <ListItemText primary="Log Out" />
+          <ListItemText onClick={handleSignOut} primary="Log Out" />
         </ListItem>
       </List>
     );

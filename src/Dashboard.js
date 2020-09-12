@@ -1,12 +1,14 @@
 import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import './Dashboard.css'
 import { useStateValue } from './StateProvider';
 import { auth } from './firebase';
-import Sidebar from './Sidebar';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+
 import Overview from './Overview';
 import Billing from './Billing';
 import Items from './Items';
+import Sidebar from './Sidebar';
+import NewItem from './NewItem';
 
 const items = [
 	{name: 'overview', label: 'Overview'},
@@ -23,7 +25,7 @@ const items = [
 	{name: 'logout', label: 'Log Out'}
   ]
 
-function Dashboard() {
+function Dashboard({ match }) {
 	const [{ user }] = useStateValue();
 
 	const handleSignOut = () => {
@@ -42,25 +44,24 @@ function Dashboard() {
 					<Sidebar items={items} />
 				</div>
 				<div className="dashboard__main">
-					
-						<Switch>
-							<Route path='/dashboard/overview'>
-								<Overview />
-							</Route>
-							<Route path='/dashboard/items'>
-								<Items />
-							</Route>
-							<Route path='/dashboard/billing'>
-								<Billing />
-							</Route>
-						</Switch>
-					
+					<Route path='/dashboard/overview'>
+						<Overview />
+					</Route>
+					<Route path='/dashboard/items'>
+						<Items />
+					</Route>
+					<Route path='/dashboard/billing'>
+						<Billing />
+					</Route>
+					<Route path='/dashboard/new-item'>
+						<NewItem />
+					</Route>
 				</div>
 				
-				{/* <button onClick={handleSignOut}>Sign Out</button> */}
+				<button onClick={handleSignOut}>Sign Out</button>
 			</div>
 		</Router>
 	)
 }
 
-export default Dashboard
+export default Dashboard;

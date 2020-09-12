@@ -1,0 +1,48 @@
+.newItem {
+	background: rgba(1, 1, 1, 0.1);
+	text-align: left;
+	padding: 25px;
+}
+
+.newItem h1 {
+	font-weight: 300;
+	text-align: center;
+	padding-bottom: 25px;
+}
+
+.newItem__formTitle {
+	grid-column: 1/3;
+	font-weight: 300;
+	padding-top: 20px;
+}
+
+.newItem__formInput {
+	grid-column: 3/9;
+	width: 100%;
+	margin-top: 20px;
+	padding: 5px;
+	font-family: 'Poppins';
+	font-weight: 400;
+	border: none;
+}
+
+.newItem__form textarea {
+	height: 100px;
+	resize: none;
+}
+
+.newItem__formSubmit {
+	grid-column: 4/6;
+	padding-top: 25px;
+}
+
+.newItem__formSubmit > button {
+	width: 100%;
+	height: 40px;
+	border: none;
+	background: black;
+	color: white;
+	font-size: 1.2em;
+	font-family: 'Poppins';
+	font-weight: 300;
+}
