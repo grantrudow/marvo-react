@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './NewItem.css';
 import { useHistory } from 'react-router-dom';
-import { auth, db } from './firebase';
+import { auth, db, storage } from './firebase';
 
 
 function NewItem() {
@@ -10,47 +10,71 @@ function NewItem() {
     const [brand, setBrand] = useState('');
     const [size, setSize] = useState('');
     const [description, setDescription] = useState('');
+    const allInputs = {imgUrl: ''};
     const [imageAsFile, setImageAsFile] = useState('');
-    const [imageAsUrl, setImageAsUrl] = useState(allImputs);
+    const [imageAsUrl, setImageAsUrl] = useState(allInputs);
+
+   
+    const handleImageAsFile = (e) => {
+        const image = e.target.files[0]
+        setImageAsFile(imageFile => (image))
+    }
 
     const onSubmit = (event) => {
         event.preventDefault();
+        console.log('Starting Upload')
         const user = auth.currentUser;
+
 
         if (name && brand && size && description) {
 
-            console.log(imageAsFile)
-            const handleImageAsFile = (e) => {
-                const image = e.target.files[0]
-                setImageAsFile(imageFile => (image))
+            if(imageAsFile === '') {
+                alert(`Not an image, the image file is a ${typeof(imageAsFile)}`)
             }
-
-            console.log('Form is full')
-            console.log(user.uid)
-
-            db.collection('users')
-                .doc(user.uid)
-                .collection('items')
-                .doc()
-                .set({
-                    name: name,
-                    brand: brand,
-                    size: size,
-                    description: description,
-                    sold: false,
-                    createdAt: Date()
-                })
-                .then(function() {
-                    console.log('Document successfully added')
-                })
-                .then(function() {
-                    history.push('/dashboard/items')
-                })
-                .catch(function(error) {
-                    console.log('There was an error writing document')
-                })
+            const uploadTask = storage.ref(`/images/${imageAsFile.name}`).put(imageAsFile)
             
-                
+            // Initiates firebase side uploading
+            uploadTask.on('state_changed',
+                (snapShot) => {
+                    // Takes a snap shot of process happening
+                    console.log(snapShot)
+                }, (error) => {
+                    // Catches errors
+                    console.log(error)
+                }, () => {
+                    // Gets the functions from storage, references the image storage in firebase by the children
+                    // Gets the download url then sets the image from firebase as the value for the imgUrl key
+                    storage.ref('images').child(imageAsFile.name).getDownloadURL()
+                    .then(fireBaseUrl => {
+                        setImageAsUrl(prevObject => ({...prevObject, imgUrl: fireBaseUrl}))
+                        db.collection('users')
+                            .doc(user.uid)
+                            .collection('items')
+                            .doc()
+                            .set({
+                                name: name,
+                                brand: brand,
+                                size: size,
+                                description: description,
+                                sold: false,
+                                createdAt: Date(),
+                                imageUrl: fireBaseUrl
+                            })
+                            .then(function() {
+                                console.log('Document successfully added')
+                            })
+                            .then(function() {
+                                history.push('/dashboard/items')
+                            })
+                            .catch(function(error) {
+                                console.log('There was an error writing document')
+                            })
+                                })
+                            }
+            )
+
+            console.log('IMAGE URL', imageAsUrl)
+
         } else {
             alert('Please fill in all fields')
         }
@@ -95,7 +119,7 @@ function NewItem() {
 
                     <h3 className="newItem__formTitle">Item Images</h3>
                     <input 
-                     onChange={handleImageAsFile}
+                    onChange={handleImageAsFile}
                     className="newItem__formInput" type="file" accept="image/*" multiple required/>
 
                     <div className="newItem__formSubmit">

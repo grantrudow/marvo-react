@@ -8,12 +8,12 @@ function ProductCard({ name, brand, size, description, image }) {
 
     return (
         <div className="productCard">
-            <img src={productImage} alt="" />
+            <img src={image} alt="" />
             <div className="productCard__info">
-                <h3>{name}</h3>
-                <h4>{brand}</h4>
-                <h4>{size}</h4>
-                <h4>Product Price</h4>
+                <h3 className="productCard_name">{name}</h3>
+                <h5 className="productCard_brand">{brand}</h5>
+                <h5 className="productCard_size">{size}</h5>
+                <h5 className="productCard_price">$59.99</h5>
             </div>
         </div>
     )

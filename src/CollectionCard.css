@@ -8,9 +8,13 @@
 	height: 300px;
 	object-fit: cover;
 	border-radius: 25px;
-	
+	position: relative;
+	z-index: -1;
 }
 
 .collectionCard__title {
-	margin-top: -200px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }

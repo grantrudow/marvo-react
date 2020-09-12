@@ -4,6 +4,7 @@ import './Item.css';
 import ProductCard from './ProductCard';
 
 function Item({item}) {
+	console.log('ITEM.JS', item.data.imageUrl)
 	return (
 		<div className="item">
 			<ProductCard 
@@ -11,7 +12,7 @@ function Item({item}) {
 				brand = {item.data.brand}
 				size = {item.data.size}
 				description = {item.data.description}
-				image = {item.data.image}
+				image = {item.data.imageUrl}
 			/>
 		</div>
 	)

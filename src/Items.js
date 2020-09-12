@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Items.css';
 import { Route, Link, useHistory } from 'react-router-dom';
-import { db } from './firebase';
+import { db, storage } from './firebase';
 import { useStateValue } from './StateProvider';
 
 import Item from './Item';
